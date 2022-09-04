@@ -15,7 +15,8 @@ set autoindent
 
 set cc=120   " 最大行宽
 set updatetime=100   " 刷新时间
-set termguicolors   " 仅在真彩色终端下开启
+" 仅在真彩色终端下开启
+"set termguicolors
 
 nnoremap <leader>a :call SyntaxAttr()<cr>
 
@@ -114,6 +115,7 @@ Plug 'neoclide/jsonc.vim'
 " colorscheme
 Plug 'flazz/vim-colorschemes'
 Plug 'doums/darcula'
+Plug 'arzg/vim-colors-xcode'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'arzg/vim-colors-xcode'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
