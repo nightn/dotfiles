@@ -16,7 +16,9 @@ set autoindent
 set cc=120   " 最大行宽
 set updatetime=100   " 刷新时间
 " 仅在真彩色终端下开启
-"set termguicolors
+set termguicolors
+
+set hidden
 
 nnoremap <leader>a :call SyntaxAttr()<cr>
 
@@ -29,7 +31,7 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " find all tailing whitespace
 nnoremap <leader>w /\v\s+$<cr>
 " delete all tailing whitespace
-nnoremap <leader>W :%s/\v\s+$//g<cr>
+nnoremap <leader>W :%s/\v\s+$//g \| noh<cr>
 " move current line down
 nnoremap - ddp
 " move current line up
@@ -52,8 +54,16 @@ nnoremap <leader>v :execute "rightbelow vs " . bufname("#")<cr>
 nnoremap <leader>; :execute "normal! mqA;\<esc>`q"
 " Toggling
 nnoremap <leader>N :setlocal number!<cr>
-" close Quickfix Location Preview
-nnoremap <leader>q :cclose \| lclose \| pclose<cr>
+" close Quickfix Location Preview Help
+nnoremap <leader>q :cclose \| lclose \| pclose \| helpclose<cr>
+
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ` ``<left>
+inoremap < <><left>
 
 " disable arrow keys
 inoremap <left> <nop>
@@ -64,6 +74,8 @@ nnoremap <left> <nop>
 nnoremap <right> <nop>
 nnoremap <up> <nop>
 nnoremap <down> <nop>
+
+autocmd FileType def :set ft=cpp
 
 " 禁止backup功能，设置undo文件路径
 set nobackup
@@ -87,6 +99,11 @@ nnoremap <silent> [b :bp<cr>
 nnoremap <silent> ]b :bn<cr>
 nnoremap <silent> [B :bfirst<cr>
 nnoremap <silent> ]B :blast<cr>
+
+nnoremap <silent> [q :cp<cr>
+nnoremap <silent> ]q :cn<cr>
+nnoremap <silent> [Q :cfirst<cr>
+nnoremap <silent> ]Q :clast<cr>
 
 " shut down vibrate of termux
 " set vb
@@ -135,12 +152,12 @@ let g:xcodelight_green_comments = 1
 let g:xcodelight_match_paren_style = 1
 
 " dark theme
-"set background=dark
-"colorscheme darcula
+set background=dark
+colorscheme darcula
 
 " light theme
-set background=light
-colorscheme xcodelight
+"set background=light
+"colorscheme xcodelight
 
 "colorscheme shine
 "colorscheme PaperColor
@@ -159,7 +176,7 @@ let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tagbar#flags = 'f' "show full tag hierarchy
 
 " tagbar auto open
-"autocmd FileType c,cpp,javascript,python nested :TagbarOpen
+autocmd FileType c,cpp,javascript,python nested :TagbarOpen
 let g:airline#extensions#tagbar#searchmethod = 'scoped-stl'
 
 " fzf
@@ -175,7 +192,7 @@ let g:ycm_log_level = 'debug'
 " 用于 YouCompleteMe 的设定
 let g:ycm_extra_conf_globlist = ['~/repo/*', '~/tools/ycm/*', '~/.vim/plugged/YouCompleteMe/*']
 let g:ycm_max_diagnostics_to_display = 0  " 不对ycm显示的告警数量做限制
-let g:airline#extensions#ycm#enabled = 1
+let g:airline#extensions#ycm#enabled = 1  " filetype man has problem
 let g:airline#extensions#ycm#error_symbol = 'E:'
 set completeopt-=preview
 let g:ycm_auto_hover = ''
@@ -199,6 +216,7 @@ nnoremap <leader>gd :YcmCompleter GoToDefinition<cr>
 nnoremap <leader>gh :YcmCompleter GoToDeclaration<cr>
 nnoremap <leader>gr :YcmCompleter GoToReferences<cr>
 nnoremap <leader>gs :YcmCompleter GoToSymbol<Space>
+nnoremap <leader>d :YcmDiags<cr>
 nmap <leader>fw <Plug>(YCMFindSymbolInWorkspace)
 nmap <leader>fd <Plug>(YCMFindSymbolInDocument)
 
