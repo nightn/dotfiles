@@ -1,0 +1,16 @@
+[user]
+  email = nightn@126.com
+  name = nightn
+[core]
+  editor = nvim
+[alias]
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[color]
+  ui = auto
+[https]
+  postBuffer = 242880000
+  sslVerify=false
+[http]
+  postBuffer = 242880000
+  sslVerify=false
+
